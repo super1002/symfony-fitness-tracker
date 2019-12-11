@@ -1,0 +1,73 @@
+<script>
+    let timer = null;
+    let currentStartTime = null;
+    $(document).ready(function () {
+        loadCurrentRun();
+    });
+
+    function updateTimer() {
+        let current = new Date();
+        let time = current - currentStartTime;
+        let timeStr = getHours(time) + ":" + getMinutes(time) + ":" + getSeconds(time);
+        $('#timer').text(timeStr);
+    }
+
+    function getHours(milli) {
+        return Math.floor(milli / 3600000);
+    }
+
+    function getMinutes(milli) {
+        return Math.floor(milli / 60000);
+    }
+
+    function getSeconds(milli) {
+        return Math.floor((milli / 1000) - getMinutes(milli) * 60);
+    }
+
+    function loadCurrentRun() {
+        $.ajax({
+            url: "{{ path('run_load_current') }}",
+            success: function (data) {
+                console.log(data);
+                if (data.length > 0) {
+                    $('#stop-running').show();
+                    $('#start-running').hide();
+                    currentStartTime = new Date(data);
+                    timer = window.setInterval(updateTimer, 1000);
+                } else {
+                    $('#start-running').show();
+                    $('#stop-running').hide();
+                }
+            }
+        })
+    }
+
+    function startRunning() {
+        $.ajax({
+            url: "{{ path('run_start') }}",
+            success: function (data) {
+                console.log(data);
+                $('#start-running').hide();
+                $('#stop-running').show();
+            }
+        })
+    }
+
+    function stopRunning() {
+        window.clearInterval(timer);
+        $.ajax({
+            url: "{{ path('run_stop') }}",
+            success: function (data) {
+                console.log(data);
+                $('#start-running').show();
+                $('#stop-running').hide();
+            }
+        })
+    }
+</script>
+
+<a class="btn btn-info hidden" id="start-running" href="javascript:void(0)" onclick="startRunning()">RUN!</a>
+<a class="btn btn-danger hidden" id="stop-running" href="javascript:void(0)" onclick="stopRunning()">STOP!</a>
+<div id="timer">
+
+</div>

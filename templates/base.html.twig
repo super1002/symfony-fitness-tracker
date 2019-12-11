@@ -2,15 +2,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Fitness Tracker{% endblock %}</title>
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
     {% endblock %}
 </head>
 <body>
 <div class="row">
     <div class="col-sm-4 side-nav">
         <h1>Fitness Tracker</h1>
+        {{ include('base/start-running.html.twig') }}
         <nav>
             <ul>
                 <li class="nav-item">
