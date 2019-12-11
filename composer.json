@@ -5,7 +5,8 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "symfony/annotations-pack": "v1.0.0",
+        "doctrine/annotations": "^1.8",
+        "doctrine/cache": "^1.10",
         "symfony/console": "5.0.*",
         "symfony/debug": "4.4.x-dev",
         "symfony/debug-bundle": "5.0.x-dev",
@@ -18,6 +19,7 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "symfony/maker-bundle": "^1.14"
     },
     "config": {
         "preferred-install": {
