@@ -1,5 +1,18 @@
 @import '~bootstrap/scss/bootstrap.scss';
+@import 'imports';
 
 body {
-    background-color: white;
+    padding: 5px;
+    background-color: #16111d;
+    overscroll-behavior-x: none;
+    overflow-x: hidden;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6, nav {
+    font-family: Google;
+}
+
+.content {
+    padding-left: 10px;
 }
