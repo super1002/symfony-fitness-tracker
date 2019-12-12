@@ -2,4 +2,20 @@
     background-color: #0b0912;
     box-shadow: 5px 0 10px 0 rgba(0, 0, 0, 0.5);
     height: 100%;
+    margin-bottom: 20px;
+}
+
+nav {
+    ul {
+        list-style-type: none;
+        padding-inline-start: unset;
+    }
+}
+
+.side-nav#timer-panel {
+    padding: 20px;
+
+    #timer {
+        font-size: 30px;
+    }
 }

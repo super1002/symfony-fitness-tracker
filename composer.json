@@ -21,8 +21,10 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "symfony/form": "5.0.x-dev",
         "symfony/maker-bundle": "^1.14",
-        "symfony/profiler-pack": "v1.0.4"
+        "symfony/profiler-pack": "v1.0.4",
+        "symfony/validator": "5.0.x-dev"
     },
     "config": {
         "preferred-install": {

@@ -1,0 +1,29 @@
+table {
+    color: white !important;
+
+    a {
+        color: $dark-link !important;
+    }
+
+    details {
+        background-color: white;
+        border-radius: 5px;
+
+        ul {
+            background-color: white;
+            text-decoration: none;
+            display: block;
+            position: absolute;
+            list-style-type: none;
+        }
+    }
+}
+
+table.table-hover {
+    tbody {
+        tr:hover {
+            color: rgb(226, 226, 226);
+            background-color: #352842;
+        }
+    }
+}

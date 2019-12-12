@@ -45,6 +45,11 @@ class JoggingRoute
      */
     private $runs;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $distance;
+
     public function __construct()
     {
         $this->runs = new ArrayCollection();
@@ -130,6 +135,18 @@ class JoggingRoute
                 $run->setRoute(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDistance(): ?float
+    {
+        return $this->distance;
+    }
+
+    public function setDistance(?float $distance): self
+    {
+        $this->distance = $distance;
 
         return $this;
     }

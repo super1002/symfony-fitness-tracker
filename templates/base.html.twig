@@ -11,19 +11,23 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-sm-4 side-nav">
-        <h1>Fitness Tracker</h1>
-        {{ include('base/start-running.html.twig') }}
-        <nav>
-            <ul>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Sub Page 1</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Sub Page 2</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="col-sm-4">
+        <div class="side-nav">
+            <h1><a href="{{ path('home_index') }}">Fitness Tracker</a></h1>
+            <nav>
+                <ul>
+                    <li class="nav-item">
+                        <a href="{{ path('routes_list') }}" class="nav-link">Routes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Sub Page 2</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="side-nav" id="timer-panel">
+            {{ include('base/start-running.html.twig') }}
+        </div>
     </div>
     <div class="col-sm-8">
         <div class="content">
