@@ -19,7 +19,7 @@
 
     function loadCurrentRun() {
         $.ajax({
-            url: "{{ path('run_load_current') }}",
+            url: "{{ path('ajax_run_load_current') }}",
             success: function (data) {
                 console.log(data);
                 if (data.length > 0) {
@@ -37,7 +37,7 @@
 
     function startRunning() {
         $.ajax({
-            url: "{{ path('run_start') }}",
+            url: "{{ path('ajax_run_start') }}",
             success: function (data) {
                 console.log(data);
                 $('#start-running').hide();
@@ -49,7 +49,7 @@
     function stopRunning() {
         window.clearInterval(timer);
         $.ajax({
-            url: "{{ path('run_stop') }}",
+            url: "{{ path('ajax_run_stop') }}",
             success: function (data) {
                 console.log(data);
                 $('#start-running').show();
