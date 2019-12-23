@@ -49,6 +49,7 @@ class AjaxRunController extends AbstractController
     {
         $unfinished = $this->getDoctrine()->getRepository(Run::class)->findOneBy(['dateEnded' => null]);
         $unfinished->setDateEnded(new DateTime());
+        $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse([$unfinished->getDateStarted()->diff($unfinished->getDateEnded())], 200);
     }
