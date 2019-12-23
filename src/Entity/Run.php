@@ -71,4 +71,9 @@ class Run
 
         return $this;
     }
+
+    public function calculateDuration()
+    {
+        return $this->getDateEnded()->diff($this->getDateStarted());
+    }
 }

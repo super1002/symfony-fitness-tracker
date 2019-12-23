@@ -34,7 +34,8 @@
                     <td>{{ run.dateStarted|date('Y.m.d') }}</td>
                     <td>{{ run.dateStarted|date('h:i:s') }}</td>
                     <td>{{ run.dateEnded|date('h:i:s') }}</td>
-                    <td>{{ run.dateEnded - run.dateStarted }}</td>
+                    {% dump(run.dateEnded - run.dateStarted) %}
+                    <td>{{ date(run.dateEnded).diff(date(run.dateStarted))|date('h:i:s') }}</td>
                     <td>
                         <details>
                             <summary class="btn">Action</summary>

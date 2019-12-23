@@ -26,14 +26,16 @@
                 </ul>
             </nav>
         </div>
-        <div class="side-nav" id="timer-panel">
-            {{ include('base/start-running.html.twig') }}
-        </div>
+{#        {% if app.request.pathInfo != '/' %}#}
+{#            <div class="side-nav" id="timer-panel">#}
+{#                {{ include('base/start-running.html.twig') }}#}
+{#            </div>#}
+{#        {% endif %}#}
     </div>
     <div class="col-sm-8">
         <div class="content">
             {% block body %}
-                <h1>Welcome to my Fitness Tracker</h1>
+                {{ include('base/start-running.html.twig') }}
             {% endblock %}
         </div>
     </div>

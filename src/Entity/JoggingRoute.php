@@ -150,4 +150,16 @@ class JoggingRoute
 
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'link' => $this->link,
+            'description' => $this->description,
+            'dateCreated' => $this->dateCreated,
+            'distance' => $this->distance,
+        ];
+    }
 }

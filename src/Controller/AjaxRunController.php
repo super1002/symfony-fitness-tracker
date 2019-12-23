@@ -3,11 +3,13 @@
 
 namespace App\Controller;
 
+use App\Entity\JoggingRoute;
 use App\Entity\Run;
 use DateTime;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -37,7 +39,9 @@ class AjaxRunController extends AbstractController
     {
         $unfinished = $this->getDoctrine()->getRepository(Run::class)->findOneBy(['dateEnded' => null]);
 
-        return new JsonResponse([$unfinished->getDateStarted()->format('Y-m-d H:i:s')], 200);
+        $routeId = $unfinished->getRoute() ? $unfinished->getRoute()->getId() : 0;
+
+        return new JsonResponse(['current' => $unfinished->getDateStarted()->format('Y-m-d H:i:s'), 'route' => $routeId], 200);
     }
 
     /**
@@ -52,5 +56,38 @@ class AjaxRunController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         return new JsonResponse([$unfinished->getDateStarted()->diff($unfinished->getDateEnded())], 200);
+    }
+
+    /**
+     * @Route("/set-route", name="set_route")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function setRoute(Request $request)
+    {
+        if (!$request->query->has('routeId')) {
+            return new JsonResponse([], 400);
+        }
+
+        if ($request->query->get('routeId') === 0) {
+            return new JsonResponse([]);
+        }
+
+        $route = $this->getDoctrine()->getRepository(JoggingRoute::class)->findOneBy(['id' => $request->query->get('routeId')]);
+
+        if (!$route) {
+            return new JsonResponse([], 404);
+        }
+
+        $currentRun = $this->getDoctrine()->getRepository(Run::class)->findOneBy(['dateEnded' => null]);
+
+        if (!$currentRun) {
+            return new JsonResponse(['message' => 'No Run defined']);
+        }
+
+        $currentRun->setRoute($route);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse([]);
     }
 }
